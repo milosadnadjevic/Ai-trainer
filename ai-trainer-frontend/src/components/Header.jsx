@@ -1,10 +1,15 @@
-import logo from '../assets/anatomija-logo.svg'
+import logo from "../assets/anatomija-logo.svg";
+
 const Header = () => {
   return (
-<div className='flex items-center justify-center mb-10'>
-  <img src={logo} alt="logo" className='w-40'/>
-  </div>
-  )
-}
+    <div className="flex justify-center">
+      <img
+        src={logo}
+        alt="logo"
+        className="w-36 sm:w-40 drop-shadow-[0_10px_30px_rgba(255,255,255,0.15)]"
+      />
+    </div>
+  );
+};
 
-export default Header
+export default Header;

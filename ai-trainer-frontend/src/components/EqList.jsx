@@ -1,34 +1,28 @@
-
-export default function EqList(props) {
-    const machinesListItems = props.machines.map((machine) => (
-        <li key={machine}>{machine}</li>
-    ));
+export default function EqList({ machines, removeMachine }) {
+  if (!machines.length) {
     return (
-        <section>
-            {/* <h2 className="mt-5 text-2xl">Izabrali ste:</h2> */}
-            <div className="flex justify-center">
-                <ul
-                className="list-disc list-inside mt-4 space-y-2 p-4 shadow-sm align-middle text-left text-lg"
-                aria-live="polite"
-            >
-                {machinesListItems}
-            </ul>
-            </div>
-            
-            {props.machines.length > 3 && (
-                <div className="">
-                    {/* <div>
-            <h3>Spreman za trening?</h3>
-            <p>Napravi mi trening</p>
-          </div> */}
-                    <button
-                        className="px-6 py-3 rounded-2xl bg-white/80 backdrop-blur text-gray-900 font-semibold shadow-md border border-white/40 hover:bg-white hover:shadow-lg active:scale-95 transition-all"
-                        onClick={props.getWorkout}
-                    >
-                        Make me a Workout
-                    </button>
-                </div>
-            )}
-        </section>
+      <p className="text-center text-sm text-white/60">
+        No machines added yet.
+      </p>
     );
+  }
+
+  return (
+    <div className="flex flex-wrap justify-center gap-2">
+      {machines.map((machine) => (
+        <span
+          key={machine}
+          className="chip inline-flex items-center gap-2 px-4 py-2 text-sm text-white"
+        >
+          {machine}
+          <button
+            onClick={() => removeMachine(machine)}
+            className="rounded-full bg-white/10 px-2 text-white/70 hover:bg-white/20"
+          >
+            ×
+          </button>
+        </span>
+      ))}
+    </div>
+  );
 }

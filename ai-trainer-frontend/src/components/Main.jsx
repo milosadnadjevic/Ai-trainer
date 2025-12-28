@@ -1,50 +1,100 @@
 import React from "react";
+import Header from "./Header";
 import EqList from "./EqList";
 import Workout from "./Workout";
 import { training } from "../ai";
 
 export default function Main() {
-    const [machines, setMachines] = React.useState([
-        // "lat pulldown",
-        // "bench press",
-        // "seated row",
-    ]);
-
-    const [workout, setWorkout] = React.useState(false);
+    const [machines, setMachines] = React.useState([]);
+    const [workout, setWorkout] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
 
     async function getWorkout() {
-       const workoutMarkdown = await training(machines);
-       setWorkout(workoutMarkdown)
+        setLoading(true);
+        const workoutMarkdown = await training(machines);
+        setWorkout(workoutMarkdown);
+        setLoading(false);
     }
 
-    function addMachine(formData) {
-        const newMachine = formData.get("machine");
-        setMachines((prevMachines) => [...prevMachines, newMachine]);
+    function addMachine(e) {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const newMachine = formData.get("machine")?.toString().trim();
+        if (!newMachine) return;
+
+        setMachines((prev) => [...prev, newMachine]);
+        e.currentTarget.reset();
+    }
+
+    function removeMachine(machine) {
+        setMachines((prev) => prev.filter((m) => m !== machine));
     }
 
     return (
-        <main>
-            <form
-                action={addMachine}
-                className=""
-            >
-                <input
-                    type="text"
-                    placeholder="e.g. smith machine"
-                    aria-label="add machine"
-                    name="machine"
-                    className="bg-gray-300 text-gray-800 mr-10 px-2 py-2.5 rounded-xl"
+        <main className="app-bg px-4 py-10">
+            <div className="mx-auto w-full max-w-xl">
+                {/* SINGLE GLASS CARD */}
+                <section className="glass-card p-6">
+                    {/* HEADER INSIDE CARD */}
+                    <Header />
 
-                />
-                <button className="px-5 py-2 rounded-xl bg-white/80 backdrop-blur text-gray-900 font-semibold shadow-md border border-white/40 hover:bg-white hover:shadow-lg active:scale-95 transition-all">
-                  Add a machine
-                  </button>
-            </form>
+                    {/* subtle divider */}
+                    <div className="my-5 h-px w-full bg-white/10" />
 
-            {machines.length > 0 &&
-              <EqList machines={machines} getWorkout={getWorkout}/>
-            }
-            {workout && <Workout workout={workout} />}
+                    {/* TITLE */}
+                    <h2 className="text-center text-3xl font-extrabold text-white">
+                        Build Your Workout
+                    </h2>
+                    <p className="mt-2 text-center text-sm text-white/70">
+                        Add gym equipment and generate a personalized workout
+                        using AI.
+                    </p>
+
+                    {/* FORM */}
+                    <form
+                        onSubmit={addMachine}
+                        className="mt-6 flex gap-3"
+                    >
+                        <input
+                            name="machine"
+                            placeholder="e.g. smith machine"
+                            className="glass-input w-full px-4 py-3"
+                        />
+                        <button
+                            type="submit"
+                            className="glass-btn px-5 py-3"
+                        >
+                            Add
+                        </button>
+                    </form>
+
+                    {/* MACHINES */}
+                    <div className="mt-4">
+                        <EqList
+                            machines={machines}
+                            removeMachine={removeMachine}
+                        />
+                    </div>
+
+                    {/* CTA */}
+                    <button
+                        onClick={getWorkout}
+                        disabled={!machines.length || loading}
+                        className="cta-btn mt-6 w-full px-6 py-3 disabled:opacity-50"
+                    >
+                        {loading
+                            ? "Generating workout..."
+                            : "Make me a Workout"}
+                    </button>
+                </section>
+
+                {/* WORKOUT OUTPUT CARD */}
+                {workout && (
+                    <section className="glass-card mt-8 p-6">
+                        <Workout workout={workout} />
+                    </section>
+                )}
+            </div>
         </main>
     );
 }
