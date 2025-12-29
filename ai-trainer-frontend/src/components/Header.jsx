@@ -1,4 +1,4 @@
-import logo from "../assets/anatomija-logo.svg";
+import logo from "../assets/anatomija-training-intelligence.svg";
 
 const Header = () => {
   return (
