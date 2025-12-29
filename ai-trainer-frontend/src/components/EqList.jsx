@@ -2,7 +2,7 @@ export default function EqList({ machines, removeMachine }) {
   if (!machines.length) {
     return (
       <p className="text-center text-sm text-white/60">
-        No machines added yet.
+        You haven't added any equipment yet.
       </p>
     );
   }

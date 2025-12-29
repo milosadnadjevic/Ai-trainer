@@ -84,7 +84,7 @@ export default function Main() {
                     >
                         {loading
                             ? "Generating workout..."
-                            : "Make me a Workout"}
+                            : "Design my Workout"}
                     </button>
                 </section>
 
