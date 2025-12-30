@@ -1,41 +1,108 @@
 @import "tailwindcss";
 
+/* ===== Default variables (cyan theme) ===== */
 :root {
+  /* ===== Background layers (lighter cyan) ===== */
+  --bg-0: #0e141b;
+  --bg-1: #0c1117;
+  --bg-2: #090d12;
+
+  --glow-a: rgba(34, 211, 238, 0.26);
+  --glow-b: rgba(56, 189, 248, 0.20);
+  --glow-c: rgba(255, 255, 255, 0.10);
+
+  /* ===== Glass cards ===== */
+  --card-bg: rgba(255, 255, 255, 0.12);
+  --card-border: rgba(255, 255, 255, 0.22);
+
+  /* ===== Inputs ===== */
+  --input-bg: rgba(255, 255, 255, 0.18);
+  --input-border: rgba(255, 255, 255, 0.28);
+
+  /* ===== Buttons ===== */
+  --btn-bg: rgba(255, 255, 255, 0.95);
+  --btn-text: #0b1220;
+
+  /* ===== CTA ===== */
+  --cta-top: rgba(34, 211, 238, 0.55);
+  --cta-bottom: rgba(34, 211, 238, 0.35);
+  --cta-border: rgba(34, 211, 238, 0.55);
+
+  /* ===== Chips / Pills ===== */
+  --chip-bg: rgba(255, 255, 255, 0.18);
+  --chip-border: rgba(255, 255, 255, 0.30);
+  --chip-text: rgba(255, 255, 255, 0.85);
+
+  /* ===== Accents ===== */
+  --accent: rgba(34, 211, 238, 1);
+  --divider: rgba(255, 255, 255, 0.18);
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.95);
+  background-color: #0b1117;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-/* --- Gradiant background UI --- */
+
+
+/* ===== Purple Theme overrides ===== */
+html.theme-purple {
+  --bg-0: #050507;
+  --bg-1: #060512;
+  --bg-2: #04040a;
+
+  --glow-a: rgba(168, 85, 247, 0.18);
+  --glow-b: rgba(99, 102, 241, 0.14);
+  --glow-c: rgba(236, 72, 153, 0.08);
+
+  --card-bg: rgba(88, 28, 135, 0.16);
+  --card-border: rgba(168, 85, 247, 0.18);
+
+  --input-bg: rgba(15, 12, 25, 0.6);
+  --input-border: rgba(168, 85, 247, 0.22);
+
+  --btn-bg: rgba(255, 255, 255, 0.9);
+  --btn-text: #0b0b12;
+
+  --cta-top: rgba(168, 85, 247, 0.55);
+  --cta-bottom: rgba(124, 58, 237, 0.45);
+  --cta-border: rgba(168, 85, 247, 0.45);
+
+  --chip-bg: rgba(20, 15, 35, 0.6);
+  --chip-border: rgba(168, 85, 247, 0.18);
+  --chip-text: rgba(255, 255, 255, 0.75);
+
+  --accent: rgba(168, 85, 247, 0.95);
+  --divider: rgba(168, 85, 247, 0.14);
+}
+
+/* If you want to explicitly set cyan theme: */
+html.theme-cyan {
+  /* no overrides needed because :root already contains cyan defaults */
+}
+
+/* ===== App background ===== */
 .app-bg {
   min-height: 100vh;
   color: white;
   background:
-    radial-gradient(1200px 600px at 20% 20%, rgba(34, 211, 238, 0.16), transparent 55%),
-    radial-gradient(900px 500px at 85% 35%, rgba(251, 191, 36, 0.12), transparent 55%),
-    radial-gradient(700px 400px at 50% 85%, rgba(255, 255, 255, 0.06), transparent 60%),
-    linear-gradient(180deg, #0b0f14 0%, #090a0f 55%, #07080c 100%);
+    radial-gradient(1200px 600px at 20% 20%, var(--glow-a), transparent 55%),
+    radial-gradient(900px 500px at 85% 35%, var(--glow-b), transparent 55%),
+    radial-gradient(700px 400px at 50% 85%, var(--glow-c), transparent 60%),
+    linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 55%, var(--bg-2) 100%);
   position: relative;
   overflow: hidden;
 }
-
 
 .app-bg::before {
   content: "";
   position: absolute;
   inset: -40px;
-  background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0,0,0,0.65) 78%);
+  background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0,0,0,0.7) 80%);
   pointer-events: none;
 }
-
 
 .app-bg::after {
   content: "";
@@ -49,65 +116,139 @@
       transparent 2px,
       transparent 3px
     );
-  opacity: 0.08;
+  opacity: 0.07;
   mix-blend-mode: overlay;
   pointer-events: none;
 }
 
+/* ===== Glass card ===== */
 .glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 24px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   box-shadow:
-    0 20px 70px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* --- Inputs/buttons --- */
+/* ===== Inputs/buttons ===== */
 .glass-input {
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   color: rgba(255,255,255,0.92);
-  border-radius: 18px;
+  border-radius: 999px;
   outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .glass-input::placeholder {
   color: rgba(255,255,255,0.45);
 }
 
-.glass-btn {
-  background: rgba(255, 255, 255, 0.88);
-  color: #0a0a0a;
-  border-radius: 18px;
-  font-weight: 700;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  transition: transform 0.08s ease, filter 0.2s ease;
+.glass-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
-.glass-btn:hover { filter: brightness(1.03); }
+.glass-btn {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.glass-btn:hover { filter: brightness(1.03); transform: translateY(-1px); }
 .glass-btn:active { transform: translateY(1px); }
 
-
 .cta-btn {
-  background: linear-gradient(180deg, rgba(34,211,238,0.35), rgba(34,211,238,0.18));
-  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: linear-gradient(180deg, var(--cta-top), var(--cta-bottom));
+  border: 1px solid var(--cta-border);
   color: rgba(255,255,255,0.92);
-  border-radius: 22px;
-  box-shadow: 0 18px 60px rgba(34, 211, 238, 0.12);
-  transition: transform 0.08s ease, background 0.2s ease;
-}
-
-.cta-btn:hover {
-  background: linear-gradient(180deg, rgba(34,211,238,0.42), rgba(34,211,238,0.22));
-}
-.cta-btn:active { transform: translateY(1px); }
-
-/* Chips */
-.chip {
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 999px;
+  box-shadow: 0 18px 60px color-mix(in srgb, var(--accent) 22%, transparent);
+  transition: transform 0.12s ease, filter 0.2s ease;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.cta-btn:hover { filter: brightness(1.04); transform: translateY(-1px); }
+.cta-btn:active { transform: translateY(1px); }
+.cta-btn:disabled { opacity: 0.45; box-shadow: none; transform: none; }
+
+/* Chips / pills */
+.chip {
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  color: var(--chip-text);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.chip:hover {
+  background: color-mix(in srgb, var(--accent) 16%, var(--chip-bg));
+  color: rgba(255,255,255,0.92);
+}
+
+.chip.active {
+  background: color-mix(in srgb, var(--accent) 32%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  color: white;
+}
+/* ===== Sliding Theme Switch ===== */
+.theme-switch {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, border-color 0.2s ease;
+}
+
+.theme-switch:active {
+  transform: translateY(1px);
+}
+
+.theme-switch-track {
+  position: absolute;
+  inset: 6px;
+  border-radius: 999px;
+  /* background: rgba(0, 0, 0, 0.25); */
+}
+
+.theme-switch-knob {
+  position: absolute;
+  left: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease;
+}
+
+.theme-switch-knob.is-on {
+  transform: translateX(106px);
+}
+
+.theme-switch-label {
+  position: relative;
+  z-index: 2;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  user-select: none;
 }
