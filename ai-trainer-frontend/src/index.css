@@ -1,92 +1,111 @@
 @import "tailwindcss";
 
-/* ===== Default variables (cyan theme) ===== */
+/* ===== LIGHT/CYAN THEME (Default) ===== */
 :root {
-  /* ===== Background layers (lighter cyan) ===== */
-  --bg-0: #0e141b;
-  --bg-1: #0c1117;
-  --bg-2: #090d12;
+  /* Off-white/smoke white with subtle purple */
+  --bg-0: #e8edf2;
+  --bg-1: #ecf1f6;
+  --bg-2: #f0f4f8;
 
-  --glow-a: rgba(34, 211, 238, 0.26);
-  --glow-b: rgba(56, 189, 248, 0.20);
-  --glow-c: rgba(255, 255, 255, 0.10);
+  --glow-a: rgba(168, 85, 247, 0.08);
+  --glow-b: rgba(139, 92, 246, 0.06);
+  --glow-c: rgba(124, 58, 237, 0.04);
 
-  /* ===== Glass cards ===== */
-  --card-bg: rgba(255, 255, 255, 0.12);
-  --card-border: rgba(255, 255, 255, 0.22);
+  /* Glass cards - darker, more visible */
+  --card-bg: rgba(230, 235, 242, 0.75);
+  --card-border: rgba(168, 85, 247, 0.2);
 
-  /* ===== Inputs ===== */
-  --input-bg: rgba(255, 255, 255, 0.18);
-  --input-border: rgba(255, 255, 255, 0.28);
+  /* Inputs - more bubble-like */
+  --input-bg: rgba(255, 255, 255, 0.75);
+  --input-border: rgba(168, 85, 247, 0.25);
 
-  /* ===== Buttons ===== */
-  --btn-bg: rgba(255, 255, 255, 0.95);
-  --btn-text: #0b1220;
+  /* Buttons - more bubble-like with subtle gradient */
+  --btn-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+  --btn-text: #0f172a;
 
-  /* ===== CTA ===== */
-  --cta-top: rgba(34, 211, 238, 0.55);
-  --cta-bottom: rgba(34, 211, 238, 0.35);
-  --cta-border: rgba(34, 211, 238, 0.55);
+  /* CTA */
+  --cta-bg: #8b5cf6;
+  --cta-border: rgba(139, 92, 246, 0.3);
+  --cta-text: #ffffff;
 
-  /* ===== Chips / Pills ===== */
-  --chip-bg: rgba(255, 255, 255, 0.18);
-  --chip-border: rgba(255, 255, 255, 0.30);
-  --chip-text: rgba(255, 255, 255, 0.85);
+  /* Pills - more bubble-like */
+  --pill-bg: rgba(255, 255, 255, 0.8);
+  --pill-border: rgba(168, 85, 247, 0.25);
+  --pill-text: #475569;
+  --pill-active-bg: #8b5cf6;
+  --pill-active-text: #ffffff;
 
-  /* ===== Accents ===== */
-  --accent: rgba(34, 211, 238, 1);
-  --divider: rgba(255, 255, 255, 0.18);
+  /* Text colors */
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
 
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.95);
-  background-color: #0b1117;
+  /* Accents */
+  --accent: #8b5cf6;
+  --divider: rgba(168, 85, 247, 0.15);
 
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+  color: #1e293b;
+  background-color: #f8f9fb;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 }
 
-
-/* ===== Purple Theme overrides ===== */
+/* dark theme */
 html.theme-purple {
-  --bg-0: #050507;
-  --bg-1: #060512;
-  --bg-2: #04040a;
+  --bg-0: #0a0a0f;
+  --bg-1: #0d0d14;
+  --bg-2: #050508;
 
-  --glow-a: rgba(168, 85, 247, 0.18);
-  --glow-b: rgba(99, 102, 241, 0.14);
-  --glow-c: rgba(236, 72, 153, 0.08);
+  /* purple gradient in background */
+  --glow-a: rgba(139, 92, 246, 0.12);
+  --glow-b: rgba(124, 58, 237, 0.09);
+  --glow-c: rgba(99, 102, 241, 0.07);
 
-  --card-bg: rgba(88, 28, 135, 0.16);
-  --card-border: rgba(168, 85, 247, 0.18);
+  /* cards */
+  --card-bg: rgba(20, 20, 30, 0.7);
+  --card-border: rgba(139, 92, 246, 0.15);
 
-  --input-bg: rgba(15, 12, 25, 0.6);
-  --input-border: rgba(168, 85, 247, 0.22);
+  /* Inputs - dark */
+  --input-bg: rgba(15, 15, 25, 0.8);
+  --input-border: rgba(139, 92, 246, 0.2);
 
+  /* Buttons */
   --btn-bg: rgba(255, 255, 255, 0.9);
-  --btn-text: #0b0b12;
+  --btn-text: #0a0a0f;
 
-  --cta-top: rgba(168, 85, 247, 0.55);
-  --cta-bottom: rgba(124, 58, 237, 0.45);
-  --cta-border: rgba(168, 85, 247, 0.45);
+  /* CTA - purple */
+  --cta-bg: #8b5cf6;
+  --cta-border: rgba(139, 92, 246, 0.3);
+  --cta-text: #ffffff;
 
-  --chip-bg: rgba(20, 15, 35, 0.6);
-  --chip-border: rgba(168, 85, 247, 0.18);
-  --chip-text: rgba(255, 255, 255, 0.75);
+  /* Pills - purple */
+  --pill-bg: rgba(30, 27, 45, 0.8);
+  --pill-border: rgba(139, 92, 246, 0.2);
+  --pill-text: rgba(255, 255, 255, 0.75);
+  --pill-active-bg: #8b5cf6;
+  --pill-active-text: #ffffff;
 
-  --accent: rgba(168, 85, 247, 0.95);
-  --divider: rgba(168, 85, 247, 0.14);
+  /* Text colors */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+
+
+  --accent: #8b5cf6;
+  --divider: rgba(139, 92, 246, 0.12);
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.95);
+  background-color: #0a0a0f;
 }
 
-/* If you want to explicitly set cyan theme: */
-html.theme-cyan {
-  /* no overrides needed because :root already contains cyan defaults */
-}
-
-/* ===== App background ===== */
+/* background */
 .app-bg {
   min-height: 100vh;
-  color: white;
+  color: var(--text-primary);
   background:
     radial-gradient(1200px 600px at 20% 20%, var(--glow-a), transparent 55%),
     radial-gradient(900px 500px at 85% 35%, var(--glow-b), transparent 55%),
@@ -100,8 +119,12 @@ html.theme-cyan {
   content: "";
   position: absolute;
   inset: -40px;
-  background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0,0,0,0.7) 80%);
+  background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0,0,0,0.1) 80%);
   pointer-events: none;
+}
+
+html.theme-purple .app-bg::before {
+  background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0,0,0,0.6) 80%);
 }
 
 .app-bg::after {
@@ -111,102 +134,192 @@ html.theme-cyan {
   background-image:
     repeating-linear-gradient(
       0deg,
+      rgba(0,0,0,0.02) 0px,
+      rgba(0,0,0,0.02) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+html.theme-purple .app-bg::after {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
       rgba(255,255,255,0.03) 0px,
       rgba(255,255,255,0.03) 1px,
       transparent 2px,
       transparent 3px
     );
   opacity: 0.07;
-  mix-blend-mode: overlay;
-  pointer-events: none;
 }
 
-/* ===== Glass card ===== */
+/* card */
 .glass-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 28px;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+html.theme-purple .glass-card {
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* ===== Inputs/buttons ===== */
+/* inputs */
 .glass-input {
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  color: rgba(255,255,255,0.92);
+  color: var(--text-primary);
   border-radius: 999px;
   outline: none;
   transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .glass-input::placeholder {
-  color: rgba(255,255,255,0.45);
+  color: var(--text-muted);
 }
 
 .glass-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 28%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
+/* Buttons */
 .glass-btn {
   background: var(--btn-bg);
   color: var(--btn-text);
   border-radius: 999px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.35);
-  transition: transform 0.15s ease, filter 0.2s ease;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: 1px solid rgba(203, 213, 225, 0.6);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.04),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-.glass-btn:hover { filter: brightness(1.03); transform: translateY(-1px); }
+html.theme-purple .glass-btn {
+  box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+  border: 1px solid var(--input-border);
+}
+
+.glass-btn:hover { 
+  box-shadow: 
+    0 12px 30px rgba(0,0,0,0.12),
+    0 4px 8px rgba(0,0,0,0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px); 
+}
+
+html.theme-purple .glass-btn:hover {
+  box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+}
+
 .glass-btn:active { transform: translateY(1px); }
 
+/* cta button */
 .cta-btn {
-  background: linear-gradient(180deg, var(--cta-top), var(--cta-bottom));
+  background: var(--cta-bg);
   border: 1px solid var(--cta-border);
-  color: rgba(255,255,255,0.92);
+  color: var(--cta-text);
   border-radius: 999px;
-  box-shadow: 0 18px 60px color-mix(in srgb, var(--accent) 22%, transparent);
-  transition: transform 0.12s ease, filter 0.2s ease;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--accent) 25%, transparent);
+  transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.cta-btn:hover { filter: brightness(1.04); transform: translateY(-1px); }
-.cta-btn:active { transform: translateY(1px); }
-.cta-btn:disabled { opacity: 0.45; box-shadow: none; transform: none; }
+.cta-btn:hover { 
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 50px color-mix(in srgb, var(--accent) 30%, transparent);
+}
 
-/* Chips / pills */
-.chip {
-  background: var(--chip-bg);
-  border: 1px solid var(--chip-border);
+.cta-btn:active { transform: translateY(1px); }
+.cta-btn:disabled { 
+  opacity: 0.5; 
+  box-shadow: none; 
+  transform: none; 
+  filter: none;
+}
+
+.pill {
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
   border-radius: 999px;
-  color: var(--chip-text);
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  color: var(--pill-text);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+html.theme-purple .pill {
+  box-shadow: none;
+}
+
+.pill:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 10%, var(--pill-bg));
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--pill-border));
+}
+
+.pill.active {
+  background: var(--pill-active-bg);
+  border-color: var(--accent);
+  color: var(--pill-active-text);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.pill:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.chip {
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  border-radius: 999px;
+  color: var(--pill-text);
+  transition: background 0.2s ease, border-color 0.2s ease;
+  font-weight: 500;
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+html.theme-purple .chip {
+  box-shadow: none;
 }
 
 .chip:hover {
-  background: color-mix(in srgb, var(--accent) 16%, var(--chip-bg));
-  color: rgba(255,255,255,0.92);
+  background: color-mix(in srgb, var(--accent) 8%, var(--pill-bg));
 }
 
-.chip.active {
-  background: color-mix(in srgb, var(--accent) 32%, transparent);
-  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
-  color: white;
-}
-/* ===== Sliding Theme Switch ===== */
+/* Theme Switch */
 .theme-switch {
   position: relative;
   width: 150px;
   height: 40px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   cursor: pointer;
@@ -220,21 +333,14 @@ html.theme-cyan {
   transform: translateY(1px);
 }
 
-.theme-switch-track {
-  position: absolute;
-  inset: 6px;
-  border-radius: 999px;
-  /* background: rgba(0, 0, 0, 0.25); */
-}
-
 .theme-switch-knob {
   position: absolute;
   left: 8px;
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  background: var(--accent);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 40%, transparent);
   transition: transform 0.25s ease;
 }
 
@@ -245,10 +351,29 @@ html.theme-cyan {
 .theme-switch-label {
   position: relative;
   z-index: 2;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   user-select: none;
+}
+
+/* section headers */
+.section-number {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* utility text colors */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
 }

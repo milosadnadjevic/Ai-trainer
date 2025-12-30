@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ onThemeChange }) {
   const [isPurple, setIsPurple] = React.useState(() => {
     const saved = localStorage.getItem("theme");
-    return saved ? saved === "theme-purple" : true; // default purple
+    return saved ? saved === "theme-purple" : true;
   });
 
   React.useEffect(() => {
@@ -14,7 +14,15 @@ export default function ThemeToggle() {
     html.classList.add(nextTheme);
 
     localStorage.setItem("theme", nextTheme);
-  }, [isPurple]);
+    
+    if (onThemeChange) {
+      onThemeChange(isPurple);
+    }
+  }, [isPurple, onThemeChange]);
+
+  const handleToggle = () => {
+    setIsPurple((prev) => !prev);
+  };
 
   return (
     <div className="mt-3 flex items-center justify-center">
@@ -22,7 +30,8 @@ export default function ThemeToggle() {
         type="button"
         role="switch"
         aria-checked={isPurple}
-        onClick={() => setIsPurple((p) => !p)}
+        aria-label={`Switch to ${isPurple ? 'light' : 'dark'} mode`}
+        onClick={handleToggle}
         className="theme-switch"
       >
         <span className="theme-switch-track" />
