@@ -37,7 +37,7 @@ export default function Main() {
   const [workout, setWorkout] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-  // Track theme for logo switching
+
   const [isDarkMode, setIsDarkMode] = React.useState(() => {
     const saved = localStorage.getItem("theme");
     return saved ? saved === "theme-purple" : true;
@@ -108,7 +108,7 @@ export default function Main() {
             Build Your Workout
           </h2>
           <p className="mt-2 text-center text-sm text-secondary">
-            Add gym equipment and generate a personalized workout using AI.
+            Add gym equipment and generate a personalized workout.
           </p>
 
           {/* 1. WORKOUT TYPE */}
@@ -195,7 +195,7 @@ export default function Main() {
                 </svg>
                 <input
                   name="machine"
-                  placeholder="Search equipment..."
+                  placeholder="e.g. smith machine"
                   className="glass-input w-full py-3 pl-11 pr-4"
                 />
               </div>
@@ -287,7 +287,7 @@ export default function Main() {
 
         {workout && (
           <section className="glass-card mt-8 p-6">
-            <Workout workout={workout} />
+            <Workout workout={workout} isDarkMode={isDarkMode} />
           </section>
         )}
       </div>

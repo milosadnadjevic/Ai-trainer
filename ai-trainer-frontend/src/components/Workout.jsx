@@ -1,9 +1,9 @@
 import ReactMarkdown from "react-markdown";
 import "./workoutMarkdown.css";
 
-export default function Workout({ workout }) {
+export default function Workout({ workout, isDarkMode }) {
   return (
-    <div className="workout-md text-left">
+    <div className={`workout-md text-left ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
       <ReactMarkdown
         components={{
           a: ({ ...props }) => (
@@ -11,7 +11,7 @@ export default function Workout({ workout }) {
               {...props}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-cyan-300/10 px-2 py-1 font-semibold text-cyan-200 hover:underline"
+              className="workout-link"
             >
               🎥 {props.children}
             </a>
