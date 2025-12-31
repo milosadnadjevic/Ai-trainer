@@ -115,7 +115,7 @@ Keep the workout concise, professional, and easy to follow.
 
     const msg = await anthropic.messages.create({
       model: "claude-3-haiku-20240307",
-      max_tokens: 1024,
+      max_tokens: 2048,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userPrompt }],
     });

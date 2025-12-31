@@ -7,15 +7,16 @@ import { training } from "../ai";
 
 const BODY_PARTS = [
   "Chest",
-  "Back",
   "Shoulders",
-  "Arms",
+  "Back",
+  "Biceps",
+  "Triceps",
   "Legs",
   "Glutes",
+  "Full body",
+  "HIIT",
   "Core",
 ];
-
-const WORKOUT_TYPES = ["Full Body", "Split", "HIIT"];
 
 const DURATIONS = ["30 min", "45 min", "60 min", "90 min"];
 
@@ -37,34 +38,47 @@ export default function Main() {
   const [workout, setWorkout] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-
+  // Track theme for logo switching
   const [isDarkMode, setIsDarkMode] = React.useState(() => {
     const saved = localStorage.getItem("theme");
     return saved ? saved === "theme-purple" : true;
   });
 
-  const [workoutType, setWorkoutType] = React.useState("Full Body");
-  const [bodyParts, setBodyParts] = React.useState([]);
+  // NEW: up to 3 targets
+  const [bodyParts, setBodyParts] = React.useState(["Full body"]);
+
   const [injury, setInjury] = React.useState("");
   const [duration, setDuration] = React.useState("45 min");
 
   function toggleBodyPart(part) {
     setBodyParts((prev) => {
       const isSelected = prev.includes(part);
+
+      // remove if selected
       if (isSelected) {
-        return prev.filter((p) => p !== part);
+        const next = prev.filter((p) => p !== part);
+        return next.length ? next : ["Full body"]; // never empty
       }
-      if (prev.length >= 3) return prev;
-      return [...prev, part];
+
+      // if selecting "Full body" or "HIIT", make it exclusive
+      if (part === "Full body" || part === "HIIT") {
+        return [part];
+      }
+
+      // if "Full body" or "HIIT" is currently selected, replace it
+      const cleaned = prev.filter((p) => p !== "Full body" && p !== "HIIT");
+
+      // cap at 3
+      if (cleaned.length >= 3) return cleaned;
+
+      return [...cleaned, part];
     });
   }
 
   async function getWorkout() {
     setLoading(true);
     try {
-      const bodyPartString = workoutType === "Split" 
-        ? bodyParts.join(", ") 
-        : workoutType;
+      const bodyPartString = bodyParts.join(", ");
 
       const workoutMarkdown = await training(machines, {
         bodyPart: bodyPartString,
@@ -92,8 +106,8 @@ export default function Main() {
     setMachines((prev) => prev.filter((m) => m !== machine));
   }
 
-  const isSplit = workoutType === "Split";
-  const selectedCount = bodyParts.length;
+
+  const selectedCount = bodyParts.filter((p) => p !== "Full body" && p !== "HIIT").length;
 
   return (
     <main className="app-bg px-4 py-10">
@@ -108,73 +122,56 @@ export default function Main() {
             Build Your Workout
           </h2>
           <p className="mt-2 text-center text-sm text-secondary">
-            Add gym equipment and generate a personalized workout.
+            Add gym equipment and generate a personalized workout using AI.
           </p>
 
-          {/* 1. WORKOUT TYPE */}
+          {/* BODY PARTS (up to 3) */}
           <div className="mt-7">
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-base font-bold text-primary">
-                <span className="section-number">1.</span> Choose Workout Type
+            <div className="mb-2 flex items-center justify-between">
+              <h3 className="text-sm font-extrabold" style={{ color: 'var(--text-primary)' }}>
+                Select up to 3 body parts
               </h3>
-              <span className="text-xs text-muted">
-                {isSplit ? `${selectedCount}/3` : ''}
+              <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                {selectedCount}/3
               </span>
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {WORKOUT_TYPES.map((type) => (
-                <Pill
-                  key={type}
-                  active={workoutType === type}
-                  onClick={() => {
-                    setWorkoutType(type);
-                    if (type !== "Split") setBodyParts([]);
-                  }}
-                >
-                  {type}
-                </Pill>
-              ))}
+              {BODY_PARTS.map((p) => {
+                const active = bodyParts.includes(p);
+
+                const isSpecial = p === "Full body" || p === "HIIT";
+                const disableBecauseMax =
+                  !active && !isSpecial && selectedCount >= 3;
+
+                return (
+                  <Pill
+                    key={p}
+                    active={active}
+                    disabled={disableBecauseMax}
+                    onClick={() => toggleBodyPart(p)}
+                  >
+                    {p}
+                  </Pill>
+                );
+              })}
             </div>
+
+            <p className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>
+              Tip: "Full body" and "HIIT" are exclusive modes.
+            </p>
           </div>
-
-          {/* 2. TARGET MUSCLES (only if Split) */}
-          {isSplit && (
-            <div className="mt-7">
-              <h3 className="mb-3 text-base font-bold text-primary">
-                <span className="section-number">2.</span> Select Target Muscles{" "}
-                <span className="text-sm font-normal text-muted">(Only if Split)</span>
-              </h3>
-
-              <div className="flex flex-wrap gap-2">
-                {BODY_PARTS.map((p) => {
-                  const active = bodyParts.includes(p);
-                  const disabled = !active && selectedCount >= 3;
-
-                  return (
-                    <Pill
-                      key={p}
-                      active={active}
-                      disabled={disabled}
-                      onClick={() => toggleBodyPart(p)}
-                    >
-                      {p}
-                    </Pill>
-                  );
-                })}
-              </div>
-            </div>
-          )}
 
           {/* 3. ADD EQUIPMENT */}
           <div className="mt-7">
             <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-base font-bold text-primary">
+              <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
                 <span className="section-number">3.</span> Add Equipment{" "}
-                <span className="text-sm font-normal text-muted">(Optional)</span>
+                <span className="text-sm font-normal" style={{ color: 'var(--text-muted)' }}>(Optional)</span>
               </h3>
               <svg 
-                className="h-5 w-5 text-muted" 
+                className="h-5 w-5" 
+                style={{ color: 'var(--text-muted)' }}
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -195,7 +192,7 @@ export default function Main() {
                 </svg>
                 <input
                   name="machine"
-                  placeholder="e.g. smith machine"
+                  placeholder="Search equipment..."
                   className="glass-input w-full py-3 pl-11 pr-4"
                 />
               </div>
@@ -228,9 +225,10 @@ export default function Main() {
           {/* INJURIES & LIMITATIONS */}
           <div className="mt-7">
             <div className="mb-3 flex items-center justify-between">
-              <h3 className="flex items-center gap-2 text-base font-bold text-primary">
+              <h3 className="flex items-center gap-2 text-base font-bold" style={{ color: 'var(--text-primary)' }}>
                 <svg 
-                  className="h-5 w-5 text-muted" 
+                  className="h-5 w-5" 
+                  style={{ color: 'var(--text-muted)' }}
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -238,10 +236,11 @@ export default function Main() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
                 Injuries & Limitations{" "}
-                <span className="text-sm font-normal text-muted">(Optional)</span>
+                <span className="text-sm font-normal" style={{ color: 'var(--text-muted)' }}>(Optional)</span>
               </h3>
               <svg 
-                className="h-5 w-5 text-muted" 
+                className="h-5 w-5" 
+                style={{ color: 'var(--text-muted)' }}
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -252,7 +251,8 @@ export default function Main() {
 
             <div className="relative">
               <svg 
-                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" 
+                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2" 
+                style={{ color: 'var(--text-muted)' }}
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -266,7 +266,25 @@ export default function Main() {
                 className="glass-input w-full py-3 pl-11 pr-4"
               />
             </div>
-            <p className="mt-2 text-xs text-muted">Leave empty if none.</p>
+            <p className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>Leave empty if none.</p>
+          </div>
+
+          {/* DURATION */}
+          <div className="mt-7">
+            <h3 className="mb-2 text-sm font-extrabold" style={{ color: 'var(--text-primary)' }}>
+              Select Workout Length
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {DURATIONS.map((d) => (
+                <Pill
+                  key={d}
+                  active={duration === d}
+                  onClick={() => setDuration(d)}
+                >
+                  {d}
+                </Pill>
+              ))}
+            </div>
           </div>
           
           <button
