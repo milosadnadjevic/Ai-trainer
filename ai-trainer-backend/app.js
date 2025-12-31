@@ -182,7 +182,7 @@ Keep it concise (6-8 exercises max) and focused on ${target}.
 
     const msg = await anthropic.messages.create({
       model: "claude-3-haiku-20240307",
-      max_tokens: 2048,
+      max_tokens: 1024,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userPrompt }],
     });

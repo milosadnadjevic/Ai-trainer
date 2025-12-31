@@ -192,7 +192,7 @@ export default function Main() {
                 </svg>
                 <input
                   name="machine"
-                  placeholder="Search equipment..."
+                  placeholder="e.g. smith machine"
                   className="glass-input w-full py-3 pl-11 pr-4"
                 />
               </div>
