@@ -110,25 +110,25 @@ export default function Main() {
   const selectedCount = bodyParts.filter((p) => p !== "Full body" && p !== "HIIT").length;
 
   return (
-    <main className="app-bg px-4 py-10">
+    <main className="app-bg px-3 py-4">
       <div className="mx-auto w-full max-w-xl">
-        <section className="glass-card p-6">
+        <section className="glass-card p-4">
           <Header isDarkMode={isDarkMode} />
           <ThemeToggle onThemeChange={setIsDarkMode} />
 
-          <div className="my-5 h-px w-full" style={{ background: 'var(--divider)' }} />
+          <div className="my-3 h-px w-full" style={{ background: 'var(--divider)' }} />
 
-          <h2 className="text-center text-3xl font-extrabold text-primary">
+          <h2 className="text-center text-2xl font-extrabold text-primary">
             Build Your Workout
           </h2>
-          <p className="mt-2 text-center text-sm text-secondary">
+          <p className="mt-1.5 text-center text-xs text-secondary">
             Add gym equipment and generate a personalized workout using AI.
           </p>
 
           {/* BODY PARTS (up to 3) */}
-          <div className="mt-7">
-            <div className="mb-2 flex items-center justify-between">
-              <h3 className="text-sm font-extrabold" style={{ color: 'var(--text-primary)' }}>
+          <div className="mt-4">
+            <div className="mb-1.5 flex items-center justify-between">
+              <h3 className="text-xs font-extrabold" style={{ color: 'var(--text-primary)' }}>
                 Select up to 3 body parts
               </h3>
               <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
@@ -136,7 +136,7 @@ export default function Main() {
               </span>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {BODY_PARTS.map((p) => {
                 const active = bodyParts.includes(p);
 
@@ -157,20 +157,20 @@ export default function Main() {
               })}
             </div>
 
-            <p className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>
+            <p className="mt-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>
               Tip: "Full body" and "HIIT" are exclusive modes.
             </p>
           </div>
 
           {/* 3. ADD EQUIPMENT */}
-          <div className="mt-7">
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
+          <div className="mt-4">
+            <div className="mb-2 flex items-center justify-between">
+              <h3 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
                 <span className="section-number">3.</span> Add Equipment{" "}
-                <span className="text-sm font-normal" style={{ color: 'var(--text-muted)' }}>(Optional)</span>
+                <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>(Optional)</span>
               </h3>
               <svg 
-                className="h-5 w-5" 
+                className="h-4 w-4" 
                 style={{ color: 'var(--text-muted)' }}
                 fill="none" 
                 stroke="currentColor" 
@@ -183,7 +183,7 @@ export default function Main() {
             <form onSubmit={addMachine} className="flex gap-2">
               <div className="relative flex-1">
                 <svg 
-                  className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" 
+                  className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -193,19 +193,19 @@ export default function Main() {
                 <input
                   name="machine"
                   placeholder="e.g. smith machine"
-                  className="glass-input w-full py-3 pl-11 pr-4"
+                  className="glass-input w-full py-2.5 pl-9 pr-3"
                 />
               </div>
               <button 
                 type="submit" 
-                className="flex h-12 w-12 items-center justify-center rounded-full"
+                className="flex h-10 w-10 items-center justify-center rounded-full"
                 style={{ 
                   background: 'var(--input-bg)', 
                   border: '1px solid var(--input-border)' 
                 }}
               >
                 <svg 
-                  className="h-5 w-5" 
+                  className="h-4 w-4" 
                   style={{ color: 'var(--text-primary)' }}
                   fill="none" 
                   stroke="currentColor" 
@@ -217,17 +217,17 @@ export default function Main() {
             </form>
 
             {/* MACHINES LIST */}
-            <div className="mt-4">
+            <div className="mt-3">
               <EqList machines={machines} removeMachine={removeMachine} />
             </div>
           </div>
 
           {/* INJURIES & LIMITATIONS */}
-          <div className="mt-7">
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="flex items-center gap-2 text-base font-bold" style={{ color: 'var(--text-primary)' }}>
+          <div className="mt-4">
+            <div className="mb-2 flex items-center justify-between">
+              <h3 className="flex items-center gap-1.5 text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
                 <svg 
-                  className="h-5 w-5" 
+                  className="h-4 w-4" 
                   style={{ color: 'var(--text-muted)' }}
                   fill="none" 
                   stroke="currentColor" 
@@ -236,10 +236,10 @@ export default function Main() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
                 Injuries & Limitations{" "}
-                <span className="text-sm font-normal" style={{ color: 'var(--text-muted)' }}>(Optional)</span>
+                <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>(Optional)</span>
               </h3>
               <svg 
-                className="h-5 w-5" 
+                className="h-4 w-4" 
                 style={{ color: 'var(--text-muted)' }}
                 fill="none" 
                 stroke="currentColor" 
@@ -251,7 +251,7 @@ export default function Main() {
 
             <div className="relative">
               <svg 
-                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2" 
+                className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" 
                 style={{ color: 'var(--text-muted)' }}
                 fill="none" 
                 stroke="currentColor" 
@@ -263,18 +263,18 @@ export default function Main() {
                 value={injury}
                 onChange={(e) => setInjury(e.target.value)}
                 placeholder="e.g. lower back pain"
-                className="glass-input w-full py-3 pl-11 pr-4"
+                className="glass-input w-full py-2.5 pl-9 pr-3"
               />
             </div>
-            <p className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>Leave empty if none.</p>
+            <p className="mt-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>Leave empty if none.</p>
           </div>
 
           {/* DURATION */}
-          <div className="mt-7">
-            <h3 className="mb-2 text-sm font-extrabold" style={{ color: 'var(--text-primary)' }}>
+          <div className="mt-4">
+            <h3 className="mb-1.5 text-xs font-extrabold" style={{ color: 'var(--text-primary)' }}>
               Select Workout Length
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {DURATIONS.map((d) => (
                 <Pill
                   key={d}
@@ -290,10 +290,10 @@ export default function Main() {
           <button
             onClick={getWorkout}
             disabled={loading}
-            className="cta-btn mt-8 flex w-full items-center justify-center gap-2 px-6 py-3.5 disabled:opacity-50"
+            className="cta-btn mt-5 flex w-full items-center justify-center gap-2 px-5 py-2.5 disabled:opacity-50"
           >
             <svg 
-              className="h-5 w-5" 
+              className="h-4 w-4" 
               fill="currentColor" 
               viewBox="0 0 20 20"
             >
@@ -304,7 +304,7 @@ export default function Main() {
         </section>
 
         {workout && (
-          <section className="glass-card mt-8 p-6">
+          <section className="glass-card mt-4 p-4">
             <Workout workout={workout} isDarkMode={isDarkMode} />
           </section>
         )}
