@@ -109,7 +109,7 @@ export default function Main() {
   const selectedCount = bodyParts.filter((p) => p !== "Full body" && p !== "HIIT").length;
 
   return (
-    <main className="app-bg px-3 py-4 min-h-screen flex items-center justify-center">
+    <main className="app-bg px-3 py-4 min-h-screen flex justify-center">
       <div className="fixed-watermark"></div>
       <div className="mx-auto w-full max-w-xl">
         <section className="glass-card p-4">
