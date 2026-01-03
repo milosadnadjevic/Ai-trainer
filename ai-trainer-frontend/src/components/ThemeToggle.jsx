@@ -25,7 +25,7 @@ export default function ThemeToggle({ onThemeChange }) {
   };
 
   return (
-    <div className="mt-3 flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <button
         type="button"
         role="switch"

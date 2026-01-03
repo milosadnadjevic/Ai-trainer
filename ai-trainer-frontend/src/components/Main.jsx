@@ -2,7 +2,6 @@ import React from "react";
 import Header from "./Header";
 import EqList from "./EqList";
 import Workout from "./Workout";
-import ThemeToggle from "./ThemeToggle";
 import { training } from "../ai";
 
 const BODY_PARTS = [
@@ -114,8 +113,7 @@ export default function Main() {
       <div className="fixed-watermark"></div>
       <div className="mx-auto w-full max-w-xl">
         <section className="glass-card p-4">
-          <Header isDarkMode={isDarkMode} />
-          <ThemeToggle onThemeChange={setIsDarkMode} />
+          <Header onThemeChange={setIsDarkMode} />
 
           <div className="my-3 h-px w-full" style={{ background: 'var(--divider)' }} />
 
