@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export default function Timer({ duration, onComplete, isDarkMode }) {
+export default function Timer({ duration, onComplete }) {
   const [timeLeft, setTimeLeft] = useState(duration);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef(null);

@@ -1,15 +1,13 @@
-import whiteLogo from "../assets/logo.svg";
-import ThemeToggle from "./ThemeToggle";
+import logo from "../assets/bodycode-red-gradient.svg";
 
-const Header = ({ onThemeChange }) => {
+const Header = () => {
   return (
-    <div className="flex items-start justify-between">
+    <div className="flex items-center justify-baseline py-1">
       <img
-        src={whiteLogo}
+        src={logo}
         alt="logo"
-        className="w-24 sm:w-40 drop-shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
+        className="w-40 sm:w-40 drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
       />
-      <ThemeToggle onThemeChange={onThemeChange} />
     </div>
   );
 };
