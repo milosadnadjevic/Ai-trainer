@@ -1,65 +1,11 @@
 @import "tailwindcss";
 
-/* light mode*/
+/* dark mode only */
 :root {
   font-family: 'Rajdhani', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #f5f5f5;
-
-  /* Light monochrome palette */
-  --bg-0: #ffffff;
-  --bg-1: #f5f5f5;
-  --bg-2: #e8e8e8;
-
-  --glow-a: rgba(100, 100, 105, 0.04);
-  --glow-b: rgba(80, 80, 85, 0.06);
-  --glow-c: rgba(60, 60, 65, 0.08);
-
-  /* Cards - light glass effect */
-  --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(245, 245, 245, 0.75));
-  --card-border: rgba(100, 100, 105, 0.25);
-
-  /* Inputs */
-  --input-bg: rgba(255, 255, 255, 0.8);
-  --input-border: rgba(100, 100, 105, 0.3);
-
-  /* Buttons */
-  --btn-bg: rgba(230, 230, 235, 0.7);
-  --btn-text: rgba(0, 0, 0, 0.9);
-
-  /* CTA - dark gray */
-  --cta-bg: rgba(40, 40, 45, 0.95);
-  --cta-border: rgba(60, 60, 65, 0.4);
-  --cta-text: #ffffff;
-
-  /* Pills - monochrome light */
-  --pill-bg: rgba(240, 240, 245, 0.7);
-  --pill-border: rgba(120, 120, 125, 0.3);
-  --pill-text: rgba(0, 0, 0, 0.7);
-  --pill-active-bg: rgba(60, 60, 65, 0.9);
-  --pill-active-text: #ffffff;
-
-  /* Text colors */
-  --text-primary: rgba(0, 0, 0, 0.87);
-  --text-secondary: rgba(0, 0, 0, 0.65);
-  --text-muted: rgba(0, 0, 0, 0.45);
-
-  /* Accents - muted gray */
-  --accent: rgba(80, 80, 85, 0.9);
-  --divider: rgba(100, 100, 105, 0.2);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* dark mode */
-html.theme-purple {
   color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #0a0a0a;
@@ -74,28 +20,28 @@ html.theme-purple {
   --glow-c: rgba(60, 60, 65, 0.10);
 
   /* Darker cards */
-  --card-bg: linear-gradient(135deg, rgba(40, 40, 45, 0.75), rgba(20, 20, 25, 0.85));
-  --card-border: rgba(120, 120, 125, 0.25);
+  --card-bg: linear-gradient(135deg, rgb(25, 25, 28), rgb(12, 12, 14));
+  --card-border: rgba(120, 120, 125, 0.5);
 
   /* Inputs */
-  --input-bg: rgba(30, 30, 35, 0.8);
-  --input-border: rgba(100, 100, 105, 0.3);
+  --input-bg: rgb(30, 30, 35);
+  --input-border: rgba(100, 100, 105, 0.6);
 
   /* Buttons */
-  --btn-bg: rgba(80, 80, 85, 0.5);
-  --btn-text: rgba(255, 255, 255, 0.9);
+  --btn-bg: rgb(80, 80, 85);
+  --btn-text: rgba(255, 255, 255, 0.95);
 
   /* CTA - muted white/gray */
-  --cta-bg: rgba(200, 200, 205, 0.95);
-  --cta-border: rgba(120, 120, 125, 0.4);
+  --cta-bg: rgb(200, 200, 205);
+  --cta-border: rgba(120, 120, 125, 0.6);
   --cta-text: #0a0a0a;
 
   /* Pills - monochrome */
-  --pill-bg: rgba(50, 50, 55, 0.6);
-  --pill-border: rgba(100, 100, 105, 0.3);
-  --pill-text: rgba(255, 255, 255, 0.7);
-  --pill-active-bg: rgba(180, 180, 185, 0.9);
-  --pill-active-text: #0a0a0a;
+  --pill-bg: rgb(50, 50, 55);
+  --pill-border: rgba(100, 100, 105, 0.6);
+  --pill-text: rgba(255, 255, 255, 0.9);
+  --pill-active-bg: rgb(180, 40, 40);
+  --pill-active-text: rgba(255, 255, 255, 0.95);
 
   /* Text colors */
   --text-primary: rgba(255, 255, 255, 0.87);
@@ -105,6 +51,11 @@ html.theme-purple {
   /* Accents - muted gray */
   --accent: rgba(160, 160, 165, 0.9);
   --divider: rgba(120, 120, 125, 0.2);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -137,39 +88,14 @@ html {
   content: "";
   position: absolute;
   inset: -40px;
-  background: radial-gradient(circle at 50% 30%, transparent 30%, rgba(0,0,0,0.15) 75%);
-  pointer-events: none;
-}
-
-html.theme-purple .app-bg::before {
   background: radial-gradient(circle at 50% 30%, transparent 30%, rgba(0,0,0,0.85) 75%);
+  pointer-events: none;
 }
 
 .app-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,0.02) 0px,
-      rgba(0,0,0,0.02) 1px,
-      transparent 2px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 2px,
-      rgba(0,0,0,0.01) 2px,
-      rgba(0,0,0,0.01) 3px
-    );
-  opacity: 0.12;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-html.theme-purple .app-bg::after {
   background-image:
     repeating-linear-gradient(
       0deg,
@@ -185,6 +111,9 @@ html.theme-purple .app-bg::after {
       rgba(255,255,255,0.01) 2px,
       rgba(255,255,255,0.01) 3px
     );
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
 .glass-card {
@@ -200,7 +129,7 @@ html.theme-purple .app-bg::after {
 }
 
 .glass-overlay {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5));
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
 }
@@ -217,16 +146,11 @@ html.theme-purple .app-bg::after {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.15;
+  opacity: 0.08;
   filter: grayscale(1);
-  mix-blend-mode: normal;
+  mix-blend-mode: screen;
   pointer-events: none;
   z-index: 1;
-}
-
-html.theme-purple .fixed-watermark {
-  opacity: 0.08;
-  mix-blend-mode: screen;
 }
 
 /* Inputs - less rounded */
@@ -254,18 +178,6 @@ html.theme-purple .fixed-watermark {
     0 0 0 2px rgba(160, 160, 165, 0.3);
 }
 
-html.theme-purple .glass-input {
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.5),
-    inset 0 1px 2px rgba(255, 255, 255, 0.05);
-}
-
-:root .glass-input {
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 2px rgba(255, 255, 255, 0.5);
-}
-
 /* Buttons - less rounded */
 .glass-btn {
   background: var(--btn-bg);
@@ -289,18 +201,6 @@ html.theme-purple .glass-input {
 
 .glass-btn:active {
   transform: translateY(1px);
-}
-
-html.theme-purple .glass-btn {
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-:root .glass-btn {
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 
@@ -337,18 +237,6 @@ html.theme-purple .glass-btn {
   filter: none;
 }
 
-html.theme-purple .cta-btn {
-  box-shadow:
-    0 6px 24px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-:root .cta-btn {
-  box-shadow:
-    0 6px 24px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
 
 .pill {
   background: var(--pill-bg);
@@ -365,37 +253,17 @@ html.theme-purple .cta-btn {
 }
 
 .pill:hover:not(:disabled) {
-  background: rgba(70, 70, 75, 0.7);
-  border-color: rgba(120, 120, 125, 0.4);
-}
-
-html.theme-purple .pill:hover:not(:disabled) {
-  background: rgba(70, 70, 75, 0.7);
-}
-
-:root .pill:hover:not(:disabled) {
-  background: rgba(220, 220, 225, 0.8);
+  background: rgb(70, 70, 75);
+  border-color: rgba(120, 120, 125, 0.7);
 }
 
 .pill.active {
   background: var(--pill-active-bg);
-  border-color: var(--accent);
+  border-color: rgb(200, 60, 60);
   color: var(--pill-active-text);
   box-shadow:
-    0 3px 12px rgba(0, 0, 0, 0.6),
+    0 3px 12px rgba(180, 40, 40, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-html.theme-purple .pill {
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-:root .pill {
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .pill:disabled {
@@ -417,99 +285,8 @@ html.theme-purple .pill {
 }
 
 .chip:hover {
-  background: rgba(60, 60, 65, 0.7);
-  border-color: rgba(110, 110, 115, 0.35);
-}
-
-html.theme-purple .chip {
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-:root .chip {
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-:root .chip:hover {
-  background: rgba(230, 230, 235, 0.8);
-}
-
-.theme-switch {
-  position: relative;
-  width: 130px;
-  height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--input-border);
-  background: var(--input-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.15s ease, border-color 0.2s ease;
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-html.theme-purple .theme-switch {
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-:root .theme-switch {
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.theme-switch:active {
-  transform: translateY(1px);
-}
-
-.theme-switch-knob {
-  position: absolute;
-  left: 6px;
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  background: var(--accent);
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: transform 0.25s ease;
-}
-
-html.theme-purple .theme-switch-knob {
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-:root .theme-switch-knob {
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.theme-switch-knob.is-on {
-  transform: translateX(92px);
-}
-
-.theme-switch-label {
-  position: relative;
-  z-index: 2;
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  user-select: none;
+  background: rgb(60, 60, 65);
+  border-color: rgba(110, 110, 115, 0.7);
 }
 
 /* section headers */

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Timer from './Timer';
 import { parseWorkoutMarkdown, calculateWorkoutStats, createSessionState } from '../utils/workoutParser';
 
-export default function WorkoutSession({ workout, isDarkMode, onExit }) {
+export default function WorkoutSession({ workout, onExit }) {
   const [exercises, setExercises] = useState([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentSetIndex, setCurrentSetIndex] = useState(0);
@@ -134,8 +134,15 @@ export default function WorkoutSession({ workout, isDarkMode, onExit }) {
     return (
       <div className="fixed inset-0 z-50 flex justify-center bg-black bg-opacity-60" style={{ paddingTop: '8vh' }}>
         <div
-          className="glass-card mx-4 w-full max-w-sm p-6 text-center"
-          style={{ animation: 'scaleIn 0.2s ease-out', height: 'fit-content' }}
+          className="mx-4 w-full max-w-sm p-6 text-center"
+          style={{
+            animation: 'scaleIn 0.2s ease-out',
+            height: 'fit-content',
+            background: 'rgb(35, 35, 40)',
+            border: '1px solid rgb(185, 28, 28)',
+            borderRadius: '12px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
+          }}
         >
           <div className="mb-4">
             <svg
@@ -159,7 +166,16 @@ export default function WorkoutSession({ workout, isDarkMode, onExit }) {
           <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>
             You crushed your workout! All {stats.totalSets} sets completed.
           </p>
-          <button onClick={onExit} className="cta-btn w-full px-4 py-2.5">
+          <button
+            onClick={onExit}
+            className="w-full px-4 py-2.5 font-semibold rounded-lg transition-all"
+            style={{
+              background: 'rgb(34, 197, 94)',
+              border: '1px solid rgb(22, 163, 74)',
+              color: '#0a0a0a',
+              boxShadow: '0 4px 16px rgba(34, 197, 94, 0.5)'
+            }}
+          >
             Finish Workout
           </button>
         </div>
@@ -217,7 +233,6 @@ export default function WorkoutSession({ workout, isDarkMode, onExit }) {
           <Timer
             duration={currentExercise.rest}
             onComplete={handleTimerComplete}
-            isDarkMode={isDarkMode}
           />
         </div>
       )}
@@ -298,13 +313,13 @@ export default function WorkoutSession({ workout, isDarkMode, onExit }) {
                   // Get button styles based on state
                   let bgColor, borderColor;
                   if (isCompletedSet) {
-                    // Completed sets - RED (more visible in light mode)
-                    bgColor = 'rgba(220, 38, 38, 0.35)';
-                    borderColor = 'rgba(185, 28, 28, 0.8)';
+                    // Completed sets - RED
+                    bgColor = 'rgba(220, 38, 38, 0.9)';
+                    borderColor = 'rgb(185, 28, 28)';
                   } else if (isActiveSet) {
-                    // Active set - GREEN (more visible in light mode)
-                    bgColor = 'rgba(22, 163, 74, 0.35)';
-                    borderColor = 'rgba(21, 128, 61, 0.8)';
+                    // Active set - GREEN
+                    bgColor = 'rgba(22, 163, 74, 0.9)';
+                    borderColor = 'rgb(21, 128, 61)';
                   } else {
                     // Default/upcoming sets
                     bgColor = 'var(--input-bg)';

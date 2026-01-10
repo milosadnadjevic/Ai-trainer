@@ -3,14 +3,13 @@ import WorkoutSession from "./WorkoutSession";
 import WorkoutDisplay from "./WorkoutDisplay";
 import "./workoutMarkdown.css";
 
-export default function Workout({ workout, isDarkMode }) {
+export default function Workout({ workout }) {
   const [isSessionActive, setIsSessionActive] = useState(false);
 
   if (isSessionActive) {
     return (
       <WorkoutSession
         workout={workout}
-        isDarkMode={isDarkMode}
         onExit={() => setIsSessionActive(false)}
       />
     );
